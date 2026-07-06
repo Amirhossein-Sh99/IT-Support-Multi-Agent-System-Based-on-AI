@@ -16,11 +16,24 @@ agent follows (which tool to reach for, in what order) — the Agent Skill
 pattern from Day 3 of the course.
 """
 
+import os
+import sys
+
 from google.adk.agents import Agent
 from google.adk.tools.mcp_tool.mcp_toolset import MCPToolset, StdioConnectionParams
 from mcp import StdioServerParameters
 
 from src.memory import find_similar_tickets
+
+# Resolve the MCP server script as an absolute path (independent of the
+# caller's working directory) and launch it with the exact same Python
+# interpreter that's running this process (sys.executable), rather than the
+# bare string "python" - both of these previously assumed the app always
+# runs from the project root with "python" on PATH, which broke silently
+# when deployed to Streamlit Community Cloud (different working directory
+# and interpreter path there than on a local machine).
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_MCP_SERVER_PATH = os.path.join(_PROJECT_ROOT, "mcp_server", "diagnostics_server.py")
 
 # Connects to our local diagnostics MCP server as a subprocess over stdio.
 # In production this could instead point at a remotely hosted MCP server
@@ -28,8 +41,8 @@ from src.memory import find_similar_tickets
 diagnostics_mcp_toolset = MCPToolset(
     connection_params=StdioConnectionParams(
         server_params=StdioServerParameters(
-            command="python",
-            args=["mcp_server/diagnostics_server.py"],
+            command=sys.executable,
+            args=[_MCP_SERVER_PATH],
         ),
         timeout=30,
     )
