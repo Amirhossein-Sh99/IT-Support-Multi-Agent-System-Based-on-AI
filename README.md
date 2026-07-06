@@ -75,7 +75,7 @@ it-support-agents/
 │       ├── skill.md                   # procedural know-how for diagnostics
 │       └── scripts/example_traces.md
 ├── examples/
-│   ├── architecture_diagram.png       # cover image for Kaggle Writeup
+│   ├── architecture_diagram.png       # cover image
 │   └── sample_report_de.md
 ├── tools/
 │   └── generate_diagram.py            # regenerates the architecture diagram
@@ -83,10 +83,6 @@ it-support-agents/
 ├── streamlit_app.py                    # web UI entry point
 ├── requirements.txt
 ├── .env.example
-├── WRITEUP.md
-├── RATIONALE.md
-├── BEWERBUNG_PORTFOLIO_de.md            # Ausbildung-specific talking points (not a Kaggle deliverable)
-├── VIDEO_SCRIPT_fa.md                  # recording script (not a Kaggle deliverable)
 └── README.md
 ```
 
@@ -125,15 +121,9 @@ it-support-agents/
    ```
    GOOGLE_API_KEY = "your_key_here"
    ```
-   (This is Streamlit Cloud's equivalent of `.env` — never put the real key in the repo itself.)
-5. Deploy. You'll get a public URL (e.g. `https://your-app.streamlit.app`) — put this in your Kaggle Writeup as the Public Project Link.
+5. Deploy. You'll get a public URL (e.g. `https://your-app.streamlit.app`) 
 
 ## Note on Google ADK / MCP SDK versions
 
 This scaffold uses the Google ADK and MCP Python SDK API patterns as of early 2026 (`google.adk.agents.Agent`, `SequentialAgent`, `MCPToolset`, `StdioConnectionParams`, `mcp.server.fastmcp.FastMCP`). Both are actively evolving — if an import fails, check the latest docs (https://google.github.io/adk-docs/ and https://modelcontextprotocol.io/) and adjust import paths; this is expected and normal for fast-moving libraries.
 
-## Judging Notes
-
-- A live deployment is optional per the rubric; both a local run and a Streamlit Cloud deployment are documented above.
-- No API keys or secrets appear anywhere in this code; all are loaded from environment variables via `.env` (not committed).
-- All diagnostic data is simulated — no real network calls are made.
