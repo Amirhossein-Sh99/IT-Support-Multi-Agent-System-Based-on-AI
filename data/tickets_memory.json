@@ -1,0 +1,10 @@
+[
+  {
+    "ticket_text": "I can't connect to the office VPN since this morning.",
+    "category": "network",
+    "urgency": "high",
+    "root_cause": "The user's machine appears to be blocked from reaching the VPN endpoint (`vpn.corporate.com`) due to an issue with the network allow-list.",
+    "fix": "Please contact the network administration team to ensure your workstation's IP address or credentials have been added to the corporate VPN allow-list, as the network diagnostic check indicates the host is currently unreachable.",
+    "timestamp": "2026-07-05T23:02:22.923222+00:00"
+  }
+]
